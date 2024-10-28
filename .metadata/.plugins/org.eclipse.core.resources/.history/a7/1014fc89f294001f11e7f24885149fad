@@ -1,0 +1,18 @@
+package edu.kh.demo.controller;
+
+import org.springframework.stereotype.Controller;
+
+@Controller //요청 / 응답 제어 역할 명시 + Bean(==스프링이 만들고 관리하는 객체) 등록
+public class ExampleController {
+
+	
+	/*
+	 * 1) @RequestMapping("주소")
+	 * 
+	 * 2) @GetMapping("주소") : Get 방식 요청 매핑
+	 * 
+	 * 	  @PostMapping("주소") : Post 방식 요청 매핑
+	 * 
+	 * 
+	 */
+}
