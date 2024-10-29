@@ -11,6 +11,7 @@ public class DemoProject1Application {
 	 * Spring Boot 프로젝트로 만든 어플리케이션의 실행을 담당하는 클래스
 	 * Spring Aplication 최소 설정으로 간단하고 빠르게 실행 할 수 있게 해줌
 	 * *** Java 파일을 실행하듯이 Run 버튼 클릭하면 배포가 시작됨 ***
+	 
 	 *
 	 *
 	 *
