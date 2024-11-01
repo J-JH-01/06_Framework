@@ -80,13 +80,7 @@
  		SELECT MEMBER_NICKNAME, ENROLL_DATE FROM "MEMBER"				
  						
  	- ${key} == MEMBER_ADDRESS 인 경우							
- 		SELECT MEMBER_NICKNAME, MEMBER_ADDRESS FROM "MEMBER"			
- 						
- 						
- 						
- 						
- 						
- 						
+ 		SELECT MEMBER_NICKNAME, MEMBER_ADDRESS FROM "MEMBER"						
   -->
  
  
@@ -96,26 +90,43 @@
  		-> DTO, Map 인 경우 필드명/key 를 입력해서 하나씩 꺼내 사용할 수 있음
   -->
   
+  
+  
  <!-- 할일 추가 -->
  <insert id="addTodo" parameterType="edu.kh.todo.model.dto.Todo">
  INSERT INTO TB_TODO
  VALUES(SEQ_TODO_NO.NEXTVAL, #{todoTitle}, #{todoContent}, DEFAULT, DEFAULT)
  </insert>
+
+<!-- 할 일 상세 조회 --> 
+ <select id="todoDetail" parameterType="_int" resultType="Todo">
+ 	SELECT TODO_NO, TODO_TITLE, TODO_CONTENT,COMPLETE,
+	TO_CHAR(REG_DATE, 'YYYY-MM-DD HH24:MI:SS') REG_DATE
+	FROM TB_TODO
+	WHERE TODO_NO = ${todoNo}
+ </select>
  
  
+ <!-- 완료 여부 변경 -->
+ <update id="changeComplete" parameterType="Todo">
+ 	UPDATE TB_TODO SET 
+ 	COMPLETE = #{complete}
+ 	WHERE TODO_NO = #{todoNo}
+ </update>
  
+ <!-- 할 일 변경 -->
+ <update id="updateTodo" parameterType="Todo">
+ 	UPDATE TB_TODO SET 
+ 	TODO_TITLE = #{todoTitle},
+ 	TODO_CONTENT = #{todoContent}
+ 	WHERE TODO_NO = #{todoNo}
+ </update>
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+ <!-- 할 일 삭제 -->
+ <delete id="deleteTodo" parameterType="Todo">
+ 	DELETE FROM TB_TODO
+ 	WHERE TODO_NO = #{todoNo}
+ </delete>
  
  
  

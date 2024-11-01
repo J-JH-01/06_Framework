@@ -51,7 +51,7 @@
         <!-- <p th:text="${iterStat}"></p> -->
         <td th:text="${iterStat.count}">행 번호</td>
         <td th:text="*{todoNo}">할 일 번호</td>
-        <td><a href="#"
+        <td><a th:href="@{/todo/detail(todoNo=*{todoNo})}"
           th:text="*{todoTitle}">할 일 제목</a></td>
         <td th:text="*{complete}">완료 여부(Y/N)</td>
         <td th:text="*{regDate}">등록일</td>
@@ -63,7 +63,7 @@
    <!-- 공통 푸터 내용 -->
     <!-- footer.html 조각을 해당 위치에 추가 -->
 
-  <th:block th:replace="~{common/footer}"></th:block>"
+  <th:block th:replace="~{common/footer}"></th:block>
 
 
 
