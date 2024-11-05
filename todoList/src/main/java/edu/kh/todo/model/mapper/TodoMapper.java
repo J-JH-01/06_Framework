@@ -85,6 +85,15 @@ public interface TodoMapper {
 	 * @return
 	 */
 	int deleteTodo(int todoNo);
+
+
+	/** 전체 할 일 개수 조회
+	 * @return
+	 */
+	int getTotalCount();
+
+
+	int todoUpdate(Todo todo);
 	
 
 }
