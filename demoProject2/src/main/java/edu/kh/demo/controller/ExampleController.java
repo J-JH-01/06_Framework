@@ -15,7 +15,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller // 요청/응답 제어 역할 명시 + Bean 등록
-@RequestMapping("example") //	/example로 시작하는 주소를 해당 컨트롤러에 매핑
+
+ //	/example로 시작하는 주소를 해당 컨트롤러에 매핑
 @Slf4j // lombok 라이브러리가 제공하는 로그 객체 자동생성 어노테이션
 public class ExampleController {
 
@@ -93,10 +94,6 @@ public class ExampleController {
 		// -> src/main/resources/templates/example/ex2.html
 		return "example/ex2";
 	}
-	
-	
-	
-	
 	
 	
 	

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -81,7 +82,7 @@ public class ParameterController {
 	 * [속성 추가 작성법]
 	 * @RequestParam(value="name", required="false", defaultValue="1")
 	 * 
-	 * value : 전닯다은 input 태그의 name 태그의 속성값 (파라미터 key)
+	 * value : 전달받은 input 태그의 name 태그의 속성값 (파라미터 key)
 	 * 
 	 * required : 입력된 name 속성값 파라미터 필수 여부 지정(기본값 true)
 	 * -> required = true인 파라미터가 존재하지 않는다면 400 Bad Request 에러 발생
@@ -165,12 +166,18 @@ public class ParameterController {
 	
 	//@ModelAttribute는 생략가능
 	@PostMapping("test4")	//	/param/test4 POST요청 매핑
-	public String paramTest4(@ModelAttribute MemberDTO inputMember) {
+	public String paramTest4(@ModelAttribute MemberDTO inputMember,Model model) {
 												// -> 커맨드 객체
 		
 		log.debug("inputMember : " + inputMember);
 		
-		return "redirect:/param/main";
+		model.addAttribute("Id", inputMember.getMemberId());
+		model.addAttribute("Pw", inputMember.getMemberPw());
+		model.addAttribute("Name", inputMember.getMemberName());
+		model.addAttribute("Age", inputMember.getMemberAge());
+		
+		
+		return "/test";
 	}
 	
 	
