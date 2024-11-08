@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.project.member.model.dto.Member;
 import edu.kh.project.member.model.mapper.MemberMapper;
@@ -68,4 +69,60 @@ public class MemberServiceImpl implements MemberService {
 			return mapper.checkEmail(memberEmail);
 		}
 	
+		
+		// 닉네임 중복 검사 서비스
+		@Override
+		public int checkNickname(String memberNickname) {
+			return mapper.checkNickname(memberNickname);
+		}
+		
+		// 회원 가입 서비스
+		@Override
+		public int signup(Member inputMember, String[] memberAddress) {
+			
+			// 주소가 입력되지 않으면
+			// inputMember.getMemberAddress() -> ",,"
+			// memberAdress => [,,]
+			
+			// 주소가 입력된 경우
+			if( !inputMember.getMemberAddress().equals(",,") ) {
+				
+				// String.join("구분자",배열")
+				// -> 배열의 모든 요소 사이에 "구분자"를 추가하여
+				// 하나의 문자열로 만들어 반환하는 메서드
+				String address = String.join("^^^", memberAddress);
+				// 04132^^^서울시중구^^^3층,E강의장
+				
+				// "^^^" 구분자로 쓴 이유
+				// -> 주소, 상세주소에 없는 특수문자 작성
+				// -> 나중에 마이페이지에서 주소 부분 수정시
+				//	  다시 3분할 해야할 때 구분자로 이용할 예정
+				
+				// inputMember 주소로 합쳐진 주소를 세팅
+				inputMember.setMemberAddress(address);
+				
+			} else {
+				// 주소가 입력되지 않은 경우
+				inputMember.setMemberAddress(null); // null로 저장 
+				// 마이바티스 컨피그에서 자바 NULL이 DB에서 NULL로 인식되게 해놨었음
+			}
+			
+			// inputMember안의 memberPw -> 평문 
+			// 비밀번호를 암호화하여 inputMember에 세팅
+			String encPw = bcrypt.encode(inputMember.getMemberPw());
+			inputMember.setMemberPw(encPw);
+			
+			// 회원 가입 매퍼 메서드 호출
+			return mapper.signup(inputMember);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 }
