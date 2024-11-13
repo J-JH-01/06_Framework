@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -24,8 +25,17 @@ import lombok.extern.slf4j.Slf4j;
  * 
  */
 
+
+/*
+ * @SessionAttributes의 역할
+ * 
+ * - Model에 추가된 속성 중 key 값이 일치하는 속성을 session scope로 변경
+ * - sessionStatus 이용 시 session에 등록된 완료할 대상을찾는 용도
+ */
+
+
 @SessionAttributes({"loginMember"}) // 몇개든 나열 가능하다
-@Slf4j
+@Slf4j // 로그 객체 자동 완성
 @Controller
 @RequestMapping("member")
 public class MemberController {
@@ -162,6 +172,24 @@ public class MemberController {
 		// 실패 -> redirect:signup (상대경로)
 				// 현재 주소/ member/signup (GET 요청)
 	}
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
