@@ -18,7 +18,6 @@
 
 		<th:block th:replace="~{common/header}"></th:block>
 
-
 		<section class="board-list">
 
 			<th:block th:each="boardType : ${application.boardTypeList}">
@@ -70,7 +69,6 @@
 									
 									
 									<!-- 검색 X -->
-									 <!-- CP는 쿼리스트링 자리에 들어가는 것임-->
 									<a th:unless="${param.key}"
 									th:href="@{/board/{boardCode}/{boardNo} (boardCode=${boardCode}, boardNo=*{boardNo}, cp=${pagination.currentPage})}"
 									th:text="*{boardTitle}">게시글 제목</a>
@@ -160,7 +158,7 @@
 					<!-- 특정 페이지로 이동 -->
 					<th:block th:if="*{startPage lt endPage}" th:each="i : *{#numbers.sequence(startPage, endPage)}">
 						
-						<!-- 현재 보고있는 페이지 (파랑색 동그라미 처리) -->
+						<!-- 현재 보고있는 페이지 -->
 						<li th:if="${i} == *{currentPage}">
 							<a class="current" th:text="${i}">현재페이지</a>
 						</li>
@@ -215,6 +213,7 @@
 	
 	<script th:inline="javascript">
 		const boardCode = /*[[${boardCode}]]*/ "게시판 코드 번호";
+		// @PathVariable 을 통해 Controller에서 request scope에 세팅된 boardCode
 	</script>
 	
 	<script src="/js/board/boardList.js"></script>

@@ -20,7 +20,7 @@ public class Comment {
 	private String commentWriteDate;
 	private String commentDelFl;
 	private String boardNo;
-	private String memeberNo;
+	private String memberNo;
 	private String parentCommentNo;
 	
 	// 댓글 조회 시 회원 프로필, 닉네임
