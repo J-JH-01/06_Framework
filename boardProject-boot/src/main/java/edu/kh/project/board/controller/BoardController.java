@@ -115,21 +115,14 @@ public class BoardController {
 				
 				model.addAttribute("thumbnail", thumbnail);
 				model.addAttribute("start", thumbnail != null ? 1 : 0);
-				
 			}
-			
-			
 		}
-		
-		
 	
 		return path;
 	}
 	
 	
-	
-	
-	
+
 	
 	
 	
