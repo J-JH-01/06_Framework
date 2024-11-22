@@ -50,6 +50,11 @@ public interface EditBoardMapper {
 	 */
 	int insertImage(BoardImg img);
 
+	/** 게시글 삭제
+	 * @return
+	 */
+	int boardDelete();
+
 
 
 	
