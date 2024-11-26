@@ -45,5 +45,10 @@ public interface BoardService {
 	 */
 	Map<String, Object> searchList(Map<String, Object> paramMap, int cp);
 
+	/**
+	 * @return
+	 */
+	List<String> selectDbImageList();
+
 	
 }

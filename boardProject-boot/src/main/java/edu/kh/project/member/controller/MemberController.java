@@ -70,22 +70,35 @@ public class MemberController {
 						RedirectAttributes ra,
 						Model model,
 						@RequestParam(value="saveId", required = false) String saveId,
-						HttpServletResponse resp
-			) {
+						HttpServletResponse resp) {
+		
+		//체크박스
+		// - 체크가 된경우 : on
+		// - 체크가 안된경우 : null
+		
 		
 		// 로그인 서비스 호출
-		Member loginMember = service.login(inputMember);
-		
-		// 로그인 실패 시
-		if(loginMember == null) {
-			ra.addFlashAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다");
-		} else {
+		try {
 			
-			// Session scope에 loginMember 추가
-			model.addAttribute("loginMember",loginMember);
-			// 1단계 : request scope에 세팅됨
-			// 2단계 : 클래스 위에 @SessionAttributes() 어노테이션 작성하여 
-			//		   session scope 이동
+			Member loginMember = service.login(inputMember);
+			
+			// 로그인 실패 시
+			if(loginMember == null) {
+				ra.addFlashAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다");
+			} else {
+				
+				// Session scope에 loginMember 추가
+				model.addAttribute("loginMember",loginMember);
+				// 1단계 : request scope에 세팅됨
+				// 2단계 : 클래스 위에 @SessionAttributes() 어노테이션 작성하여 
+				//		   session scope 이동
+			}
+			
+			
+		}
+		catch(Exception e){
+			log.info("로그인 중 예외 발생,트라이 캐치");
+			e.printStackTrace();
 		}
 		
 		return "redirect:/"; // 메인페이지 재요청

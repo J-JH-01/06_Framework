@@ -11,7 +11,7 @@ public interface MemberMapper {
 	 * @param memberEmail
 	 * @return loginMember
 	 */
-	Member login(String memberEmail);
+	Member login(String memberEmail) throws Exception;
 
 
 	/** 이메일 중복검사
