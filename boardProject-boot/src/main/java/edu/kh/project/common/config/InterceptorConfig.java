@@ -29,27 +29,7 @@ public class InterceptorConfig implements WebMvcConfigurer{
 		.addPathPatterns("/**") // 가로챌 요청 주소를 지정 , /** : / 이하 모든 요청 주소
 		.excludePathPatterns("/css/**","/js/**","/images/**","/favicon.ico"); // 가로채지 않을 주소를 지정
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	
 	}
 	
 	

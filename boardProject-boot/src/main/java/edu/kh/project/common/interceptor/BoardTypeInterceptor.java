@@ -11,6 +11,7 @@ import edu.kh.project.board.model.service.BoardService;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 
 /*
  * Interceptor : 요청/응답/뷰 완성 후 가로채는 객체(Spring 지원)
@@ -30,7 +31,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 
 
-
+@Slf4j
 public class BoardTypeInterceptor implements HandlerInterceptor {
 
 	// BoardService 의존성 주입
@@ -58,6 +59,8 @@ public class BoardTypeInterceptor implements HandlerInterceptor {
 			
 			// boardTypeList 조회 서비스 호출
 			List<Map<String, Object>> boardTypeList = service.selectBoardTypeList();
+			//log.debug(boardTypeList.toString());
+			
 			
 			// 조회 결과를 application scope에 추가
 			application.setAttribute("boardTypeList", boardTypeList);
