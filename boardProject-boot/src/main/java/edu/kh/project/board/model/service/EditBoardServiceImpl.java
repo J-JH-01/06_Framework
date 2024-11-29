@@ -35,6 +35,7 @@ public class EditBoardServiceImpl implements EditBoardService{
 	
 	
 	// 게시글 작성
+	@Transactional
 	@Override
 	public int boardInsert(Board inputBoard, List<MultipartFile> images) throws Exception {
 		
